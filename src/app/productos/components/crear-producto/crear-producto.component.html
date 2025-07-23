@@ -1,0 +1,37 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Crear Nuevo Producto</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="productoForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre del Producto</mat-label>
+        <input matInput formControlName="nombre" required>
+        <mat-error *ngIf="productoForm.controls['nombre'].hasError('required') && productoForm.controls['nombre'].touched">
+          El nombre es requerido.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Precio</mat-label>
+        <input matInput type="number" formControlName="precio" required>
+        <mat-error *ngIf="productoForm.controls['precio'].hasError('required') && productoForm.controls['precio'].touched">
+          El precio es requerido.
+        </mat-error>
+        <mat-error *ngIf="productoForm.controls['precio'].hasError('min') && productoForm.controls['precio'].touched">
+          El precio debe ser un valor positivo.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput formControlName="descripcion"></textarea>
+      </mat-form-field>
+
+      <mat-card-actions align="end">
+        <button mat-button type="button" (click)="onCancel()">Cancelar</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!productoForm.valid">Crear Producto</button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>
