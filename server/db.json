@@ -1,10 +1,28 @@
 {
   "productos": [
     {
-      "nombre": "asdasdasdas",
-      "precio": 5,
+      "nombre": "Hp laptop Core I7",
+      "precio": 6,
       "descripcion": "soy alexander",
       "id": 1
+    },
+    {
+      "nombre": "Iphone 15 Pro Max",
+      "precio": 1200,
+      "descripcion": "Iphone 15 pro max True",
+      "id": 2
+    },
+    {
+      "nombre": "rizen 5 5600",
+      "precio": 350,
+      "descripcion": "320",
+      "id": 3
+    },
+    {
+      "nombre": "LeNOVO lEGIN SERIES 3",
+      "precio": 500,
+      "descripcion": "",
+      "id": 4
     }
   ]
 }

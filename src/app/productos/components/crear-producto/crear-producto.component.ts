@@ -11,7 +11,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'; // For showing success/error messages
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 @Component({
   selector: 'app-crear-producto',
   standalone: true,
@@ -22,14 +23,18 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'; //
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatSnackBarModule // For MatSnackBar
+    MatSnackBarModule,
+    MatCardModule,
+  
+    MatIconModule,
+    MatDividerModule // For MatSnackBar
   ],
   templateUrl: './crear-producto.component.html', // Make sure this path is correct
   styleUrls: ['./crear-producto.component.scss'] // Make sure this path is correct
 })
 export class CrearProducto implements OnInit { // Renamed from CrearProductoComponent to CrearProducto for consistency with your app.routes.ts
   productoForm: FormGroup;
-
+  isEditMode: boolean = false; // Por defecto en modo creación
   constructor(
     private fb: FormBuilder, // Used to build the form
     private productoService: ProductoService,

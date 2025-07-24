@@ -1,36 +1,64 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Crear Nuevo Producto</mat-card-title>
+<mat-card class="product-card">
+  <mat-card-header class="card-header">
+    <mat-card-title class="card-title">
+      <mat-icon>add_circle</mat-icon>
+      {{isEditMode ? 'Editar Producto' : 'Crear Nuevo Producto'}}
+    </mat-card-title>
+    <mat-card-subtitle class="card-subtitle">
+      {{isEditMode ? 'Actualiza la información del producto' : 'Complete todos los campos requeridos'}}
+    </mat-card-subtitle>
   </mat-card-header>
-  <mat-card-content>
-    <form [formGroup]="productoForm" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="fill">
+
+  <mat-divider></mat-divider>
+
+  <mat-card-content class="card-content">
+    <form [formGroup]="productoForm" (ngSubmit)="onSubmit()" class="product-form">
+      <!-- Campo Nombre -->
+      <mat-form-field appearance="outline" class="form-field">
         <mat-label>Nombre del Producto</mat-label>
-        <input matInput formControlName="nombre" required>
+        <input matInput formControlName="nombre" placeholder="Ej: Laptop HP EliteBook">
+        <mat-icon matPrefix>shopping_bag</mat-icon>
         <mat-error *ngIf="productoForm.controls['nombre'].hasError('required') && productoForm.controls['nombre'].touched">
-          El nombre es requerido.
+          <mat-icon>error</mat-icon>
+          El nombre es requerido
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
+      <!-- Campo Precio -->
+      <mat-form-field appearance="outline" class="form-field">
         <mat-label>Precio</mat-label>
-        <input matInput type="number" formControlName="precio" required>
+        <input matInput type="number" formControlName="precio" placeholder="Ej: 1299.99">
+        <span matPrefix>$&nbsp;</span>
+        <mat-icon matSuffix>attach_money</mat-icon>
         <mat-error *ngIf="productoForm.controls['precio'].hasError('required') && productoForm.controls['precio'].touched">
-          El precio es requerido.
+          <mat-icon>error</mat-icon>
+          El precio es requerido
         </mat-error>
         <mat-error *ngIf="productoForm.controls['precio'].hasError('min') && productoForm.controls['precio'].touched">
-          El precio debe ser un valor positivo.
+          <mat-icon>error</mat-icon>
+          El precio debe ser mayor a 0
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
+      <!-- Campo Descripción -->
+      <mat-form-field appearance="outline" class="form-field">
         <mat-label>Descripción</mat-label>
-        <textarea matInput formControlName="descripcion"></textarea>
+        <textarea matInput formControlName="descripcion" rows="3"
+                  placeholder="Describa las características del producto"></textarea>
+        <mat-icon matPrefix>description</mat-icon>
       </mat-form-field>
 
-      <mat-card-actions align="end">
-        <button mat-button type="button" (click)="onCancel()">Cancelar</button>
-        <button mat-raised-button color="primary" type="submit" [disabled]="!productoForm.valid">Crear Producto</button>
+      <!-- Acciones -->
+      <mat-card-actions class="card-actions">
+        <button mat-stroked-button type="button" (click)="onCancel()" class="action-button">
+          <mat-icon>cancel</mat-icon>
+          Cancelar
+        </button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!productoForm.valid" 
+                class="action-button submit-button">
+          <mat-icon>{{isEditMode ? 'save' : 'add'}}</mat-icon>
+          {{isEditMode ? 'Guardar Cambios' : 'Crear Producto'}}
+        </button>
       </mat-card-actions>
     </form>
   </mat-card-content>
